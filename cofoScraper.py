@@ -91,7 +91,7 @@ class scraper():
         dirName = str(contestId) + '-' + index
 
         # Absolute Path of the main directory that would contain all the info for each sub-dir representing a problem.
-        self.dirPath = os.path.join(ROOT_DIR, dirName)
+        self.dirPath = os.path.join(ROOT_DIR, 'dataset', dirName)
         try:
             os.mkdir(self.dirPath)
         except Exception as warning:
