@@ -58,6 +58,7 @@ import sys
 # ROOT_DIR = '/home/cs20mtech01004/cofoscraper/test/testdata3'
 ROOT_DIR = sys.argv[1]
 
+
 class scraper():
 
     def __init__(self, LANGUAGE, contestId, index, tags):
@@ -216,7 +217,8 @@ class scraper():
                         codeElement = driver.find_elements(
                             By.XPATH, '//*[@id="facebox"]/div/div/div/pre/code/ol')
 
-                        print("Scraping source code from element no: {}".format(elementCount+1))
+                        print("Scraping source code from element no: {}".format(
+                            elementCount+1))
                         for li in codeElement:
                             code = ''
                             doc = li.get_attribute('innerHTML')
@@ -242,18 +244,20 @@ class scraper():
 
                 except Exception as error:
                     # if attempts > 3:
-                    print("Error occured while scraping element no-{}...".format(elementCount+1))
-                        # print('ERROR --> Origin: parseSourceCodes; URL: {} --> {}'.format(driver.current_url, error))
-                    logging.exception('Origin: parseSourceCodes; URL: {} --> Attempt #{}'.format(driver.current_url, attempts))
+                    print(
+                        "Error occured while scraping element no-{}...".format(elementCount+1))
+                    # print('ERROR --> Origin: parseSourceCodes; URL: {} --> {}'.format(driver.current_url, error))
+                    logging.exception(
+                        'Origin: parseSourceCodes; URL: {} --> Attempt #{}'.format(driver.current_url, attempts))
                     # else:
                     attempts += 1
                     driver.refresh()
                     time.sleep(1.5)
-                    
+
                 print("Number of elements scraped from the page #{}: {}".format(
-                            self.pageNo, elementCount))
+                    self.pageNo, elementCount))
                 print('Time taken to scrape source codes from page #{}: {:.3f} seconds'.format(
-                        self.pageNo, time.time()-start))
+                    self.pageNo, time.time()-start))
 
             self.pageNo += 1
             if (self.pageNo > self.page_limit) or (self.subCounter >= 750):
@@ -280,7 +284,8 @@ class scraper():
         options = Options()
         # Options.headless = True
         options.add_argument('-headless')
-        driver = webdriver.Firefox(executable_path='./geckodriver', options=options)
+        driver = webdriver.Firefox(
+            executable_path='./geckodriver', options=options)
         # host = '127.0.0.1'
         # driver = webdriver.Remote(
         #     command_executor=f"http://{host}:4444/wd/hub",
@@ -297,7 +302,7 @@ class scraper():
 
         selectLanguage = Select(form.find_element(
             By.CSS_SELECTOR, "#programTypeForInvoker"))
-        try: 
+        try:
             selectLanguage.select_by_value(self.LANGUAGE)
         except Exception as error:
             logging.exception('Origin: parseDataFromHomepage; URL: {} --> {}'.format(
@@ -329,7 +334,8 @@ class scraper():
                     filename = 'testcases.txt'
                     filepath = os.path.join(self.dirPath, filename)
 
-                    driver.find_element_by_css_selector('a.view-source').click()
+                    driver.find_element_by_css_selector(
+                        'a.view-source').click()
                     time.sleep(0.5)
                     WebDriverWait(driver, 40).until(
                         EC.visibility_of_element_located((By.CSS_SELECTOR, '#facebox .close')))
@@ -339,19 +345,21 @@ class scraper():
                             file.write(testcase.text+'\n')
                     print('Created testcases.txt...')
 
-                    driver.find_element(By.CSS_SELECTOR, '#facebox .close').click()
+                    driver.find_element(
+                        By.CSS_SELECTOR, '#facebox .close').click()
                     time.sleep(0.25)
                     WebDriverWait(driver, 30).until(
                         EC.invisibility_of_element_located((By.CSS_SELECTOR, '#facebox .close')))
 
-                    spec_flag=1
+                    spec_flag = 1
                     status = self.parseSourceCodes(driver)
                     if status == "Done":
                         print("Closing all current driver instances...")
                         driver.quit()
                         return
                 else:
-                    print("Closing driver instance as Value of content is {}".format(content))
+                    print(
+                        "Closing driver instance as Value of content is {}".format(content))
                     driver.close()
                     return
 
@@ -361,14 +369,16 @@ class scraper():
                         driver.current_url, error))
                     logging.exception('Origin: parseDataFromHomepage; URL: {} --> {}'.format(
                         driver.current_url, error))
-                    print("Closing driver instance as max limit of attempts reached in parseDataFromHomepage...")
+                    print(
+                        "Closing driver instance as max limit of attempts reached in parseDataFromHomepage...")
                     driver.close()
                     return
                 else:
                     spec_attempts += 1
                     driver.refresh()
                     time.sleep(1.5)
-            
+
+
 def driverFunc(listOfMetadata):
     language = listOfMetadata[0]
     contestId = listOfMetadata[1]
@@ -421,7 +431,7 @@ if __name__ == "__main__":
     #     p.map(driverFunc, listsOfMetadata)
     #     p.terminate()
     #     p.join()
-    
+
     print("Root Directory: {}".format(ROOT_DIR))
     print("Language-ID: {}".format(language))
     for listOfMetadata in listsOfMetadata:
