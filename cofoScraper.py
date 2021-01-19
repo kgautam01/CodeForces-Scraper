@@ -412,6 +412,8 @@ if __name__ == "__main__":
     # Absolute path of alreadyExisting.pkl file
     with open('alreadyExisting.pkl', 'rb') as f:
         alreadyExisting = pickle.load(f)
+    with open('scrapeList.pkl', 'rb') as f:
+        scrapeList = pickle.load(f)
 
     print('Length of alreadyExisting list: {}'.format(len(alreadyExisting)))
 
@@ -422,7 +424,7 @@ if __name__ == "__main__":
 
         dirName = str(contestId) + '-' + index
         # if dirName not in alreadyExisting:
-        if dirName in alreadyExisting:
+        if dirName not in alreadyExisting and dirName in scrapeList:
             listsOfMetadata.append([language, contestId, index, tags])
 
     print('Length of updated listsOfMetadata list: {}'.format(len(listsOfMetadata)))
