@@ -85,7 +85,7 @@ class scraper():
         print('-' * 40)
         print("Scraping source codes from {}...".format(self.problemURL))
         self.parseDataFromHomepage(self.problemURL)
-        print('*' * 80)
+        # print('*' * 80)
 
     def createDirSt(self, contestId, index):
         dirName = str(contestId) + '-' + index
@@ -297,7 +297,14 @@ class scraper():
 
         selectLanguage = Select(form.find_element(
             By.CSS_SELECTOR, "#programTypeForInvoker"))
-        selectLanguage.select_by_value(self.LANGUAGE)
+        try: 
+            selectLanguage.select_by_value(self.LANGUAGE)
+        except Exception as error:
+            logging.exception('Origin: parseDataFromHomepage; URL: {} --> {}'.format(
+                driver.current_url, error))
+            print("No such element exception raised. Closing driver instance...")
+            driver.close()
+            return
 
         driver.find_element(
             By.CSS_SELECTOR, ".status-filter-box-content+ div input:nth-child(1)").click()
@@ -309,11 +316,11 @@ class scraper():
 
         if len(pageNoList) != 0:
             self.page_limit = int(pageNoList[-1].text)
-            print("Page Limit: {}".format(self.page_limit))
+            print("Number of pages to be scraped: {}".format(self.page_limit))
 
         # Fetching the test cases from the very first submission on page.
-        spec_attempts, spec_flag = 0, 0
-        while spec_attempts < 3 and spec_flag == 0:
+        spec_attempts, spec_flag = 1, 0
+        while spec_attempts <= 3 and spec_flag == 0:
             try:
                 content = driver.find_element(
                     By.XPATH, '//*[@id="pageContent"]/div[3]/div[6]/table/tbody/tr[2]/td').text
@@ -344,14 +351,18 @@ class scraper():
                         driver.quit()
                         return
                 else:
-                    print("Returning as Value of content is {}".format(content))
+                    print("Closing driver instance as Value of content is {}".format(content))
+                    driver.close()
                     return
+
             except Exception as error:
-                if spec_attempts >= 3:
-                    print(' ERROR --> Origin: parseDataFromHomepage; URL: {} --> {}'.format(
+                if spec_attempts > 3:
+                    print('ERROR --> Origin: parseDataFromHomepage; URL: {} --> {}'.format(
                         driver.current_url, error))
                     logging.exception('Origin: parseDataFromHomepage; URL: {} --> {}'.format(
                         driver.current_url, error))
+                    print("Closing driver instance as max limit of attempts reached in parseDataFromHomepage...")
+                    driver.close()
                     return
                 else:
                     spec_attempts += 1
