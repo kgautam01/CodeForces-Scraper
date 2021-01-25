@@ -6,6 +6,9 @@ datasetc11
 # pickle file
 alreadyExisting.pkl
 
+#logfiles
+geckodriver.log
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
