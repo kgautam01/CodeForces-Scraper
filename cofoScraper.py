@@ -25,12 +25,12 @@ codes of accepted submissions.
     4. requests module
 
 @Run:
-    1. Make sure to run getScrapedList.py before this to get the updated pkl of already scraped problems from CodeForces
-    and ensure correct path has been mentioned for 'alreadyExisting.pkl' file in this scraper.
+    1. Make sure to run getScrapedList.py before this if it is not the first run for the scraper to get the updated 
+    pkl of already scraped problems from CodeForces and ensure correct path has been mentioned for 'alreadyExisting.pkl'
+    file in this scraper.
     2. Make sure that the path of the sub-dirs to be created in the main dir (as mentioned in line 78) is correct and 
     exist already.
-    3. Run this cmd for scraping: 'python cofoScraper.py <dataset-dir> <language-ID> <firefox/chrome>'
-    (Considers chrome webdriver by default)
+    3. Run this cmd for scraping: 'python cofoScraper.py <dataset-dir> <language-ID> <firefox/chrome> <true/false>'
 """
 
 import requests
@@ -52,11 +52,9 @@ import logging
 from multiprocessing import Pool
 from bs4 import BeautifulSoup
 import sys
-import argparse
+# import argparse
 
-# ROOT_DIR = '/home/cs20mtech01004/cofoscraper/test/testdata3'
 ROOT_DIR = sys.argv[1]
-
 
 class scraper():
 
@@ -80,12 +78,11 @@ class scraper():
             str(self.contestId) + '/' + self.index
 
         print('*' * 80)
-        print("Scraping specification from {}...".format(self.probSpecURL))
+        print('Scraping specification from {}...'.format(self.probSpecURL))
         self.parseSpecification(self.probSpecURL)
         print('-' * 40)
-        print("Scraping source codes from {}...".format(self.problemURL))
+        print('Scraping source codes from {}...'.format(self.problemURL))
         self.parseDataFromHomepage(self.problemURL)
-        # print('*' * 80)
 
     def createDirSt(self, contestId, index):
         dirName = str(contestId) + '-' + index
@@ -162,10 +159,8 @@ class scraper():
             return
 
         except Exception as error:
-            print(
-                'ERROR --> Origin: parseSpecification; URL: {} --> {}'.format(url, error))
-            logging.exception(
-                'Origin: parseSpecification; URL: {} - -> {}'.format(url, error))
+            print('ERROR --> Origin: parseSpecification; URL: {} --> {}'.format(url, error))
+            logging.exception('Origin: parseSpecification; URL: {} - -> {}'.format(url, error))
 
     def parseSourceCodes(self, driver):
         # Applying filter on the form for language and accepted submissions.
@@ -184,8 +179,7 @@ class scraper():
 
         numElements = len(
             driver.find_elements_by_css_selector('a.view-source'))
-        print(
-            "Number of elements on page #{}: {}".format(self.pageNo, numElements))
+        print('Number of elements on page #{}: {}'.format(self.pageNo, numElements))
 
         if numElements > 0:
             attempts, flag = 1, 0
@@ -197,9 +191,7 @@ class scraper():
                     start = time.time()
                     for element in driver.find_elements_by_css_selector('a.view-source'):
                         subID = element.text
-                        # print('Got subID...')
                         element.click()
-                        # print('Click is working...')
                         time.sleep(0.5)
                         WebDriverWait(driver, 30).until(
                             EC.visibility_of_element_located((By.CSS_SELECTOR, '#facebox .close')))
@@ -216,13 +208,11 @@ class scraper():
                         else:
                             codeFileName = subID + '.cpp'
 
-                        codeFileDir = os.path.join(
-                            self.subDirPath, codeFileName)
+                        codeFileDir = os.path.join(self.subDirPath, codeFileName)
                         codeElement = driver.find_elements(
                             By.XPATH, '//*[@id="facebox"]/div/div/div/pre/code/ol')
 
-                        print("Scraping source code from element no: {}".format(
-                            elementCount+1))
+                        print('Scraping source code from element no: {}'.format(elementCount+1))
                         for li in codeElement:
                             code = ''
                             doc = li.get_attribute('innerHTML')
@@ -235,12 +225,11 @@ class scraper():
                                     for word in span:
                                         codeLine += word
                                 code += codeLine + '\n'
-                        # print(code)
+
                         with open(codeFileDir, 'w') as codeFile:
                             codeFile.write(code)
                         elementCount += 1
-                        driver.find_element(
-                            By.CSS_SELECTOR, "#facebox .close").click()
+                        driver.find_element(By.CSS_SELECTOR, "#facebox .close").click()
                         time.sleep(0.25)
                         WebDriverWait(driver, 30).until(
                             EC.invisibility_of_element_located((By.CSS_SELECTOR, '#facebox .close')))
@@ -248,9 +237,7 @@ class scraper():
 
                 except Exception as error:
                     # if attempts > 3:
-                    print(
-                        "Error occured while scraping element no-{}...".format(elementCount+1))
-                    # print('ERROR --> Origin: parseSourceCodes; URL: {} --> {}'.format(driver.current_url, error))
+                    print('Error occured while scraping element no-{}...'.format(elementCount+1))
                     logging.exception(
                         'Origin: parseSourceCodes; URL: {} --> Attempt #{}'.format(driver.current_url, attempts))
                     # else:
@@ -258,7 +245,7 @@ class scraper():
                     driver.refresh()
                     time.sleep(1.5)
 
-                print("Number of elements scraped from the page #{}: {}".format(
+                print('Number of elements scraped from the page #{}: {}'.format(
                     self.pageNo, elementCount))
                 print('Time taken to scrape source codes from page #{}: {:.3f} seconds'.format(
                     self.pageNo, time.time()-start))
@@ -266,7 +253,7 @@ class scraper():
 
             self.pageNo += 1
             if (self.pageNo > self.page_limit) or (self.subCounter >= 750):
-                print("Returning for pageNo: {} and subCounter: {}".format(
+                print('Returning for pageNo: {} and subCounter: {}'.format(
                     self.pageNo, self.subCounter))
                 return "Done"
 
@@ -333,7 +320,7 @@ class scraper():
 
         if len(pageNoList) != 0:
             self.page_limit = int(pageNoList[-1].text)
-            print("Number of pages to be scraped: {}".format(self.page_limit))
+            print('Number of pages to be scraped: {}'.format(self.page_limit))
 
         # Fetching the test cases from the very first submission on page.
         spec_attempts, spec_flag = 1, 0
@@ -366,12 +353,11 @@ class scraper():
                     spec_flag = 1
                     status = self.parseSourceCodes(driver)
                     if status == "Done":
-                        print("Closing all current driver instances...")
+                        print('Closing all current driver instances...')
                         driver.quit()
                         return
                 else:
-                    print(
-                        "Closing driver instance as Value of content is {}".format(content))
+                    print('Closing driver instance as Value of content is {}'.format(content))
                     driver.close()
                     return
 
@@ -381,8 +367,7 @@ class scraper():
                         driver.current_url, error))
                     logging.exception('Origin: parseDataFromHomepage; URL: {} --> {}'.format(
                         driver.current_url, error))
-                    print(
-                        "Closing driver instance as max limit of attempts reached in parseDataFromHomepage...")
+                    print('Closing driver instance as max limit of attempts reached in parseDataFromHomepage...')
                     driver.close()
                     return
                 else:
@@ -453,14 +438,14 @@ if __name__ == "__main__":
     #     p.terminate()
     #     p.join()
 
-    print("Root Directory: {}.".format(ROOT_DIR))
-    print("Language-ID: {}.".format(language))
+    print('Root Directory: {}.'.format(ROOT_DIR))
+    print('Language-ID: {}.'.format(language))
     if sys.argv[3] == 'firefox':
-        print("Webdriver: {}".format('Firefox.'))
+        print('Webdriver: {}'.format('Firefox.'))
     else:
-        print("Webdriver: {}".format('Chrome.'))
+        print('Webdriver: {}'.format('Chrome.'))
 
     for listOfMetadata in listsOfMetadata:
         driverFunc(listOfMetadata)
-    print("Scraping done successfully.")
-    print("Dataset is created in {}.".format(ROOT_DIR))
+    print('Scraping done successfully.')
+    print('Dataset is created in {}.'.format(ROOT_DIR))
