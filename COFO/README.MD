@@ -13,4 +13,4 @@ This dataset can be used in various applications based on Machine Learning, name
 * Not all sub-directories/problems contain programs, written in all programming languages but surely in atleast on of them. 
 
 ##### NOTE
-Kindly go through the license clauses included in the repository before making use of the data in any of the application. Make sure to adhere to the clauses stated in [odeforces materials usage license(v. 0.1)](https://codeforces.com/blog/entry/967).
+Kindly go through the license clauses included in the repository before making use of the data in any of the application. Make sure to adhere to the clauses stated in [Codeforces materials usage license(v. 0.1)](https://codeforces.com/blog/entry/967).
