@@ -1,24 +1,6 @@
 # CodeForces-Scraper
 Selenium-Python based scraper for scraping the source codes and other information of the problems.
 
-# Steps
-1. Do conda install of selenium, beautifulsoup, json, and other packages in env.
-2. Create a dir <Scraped Data> to contain all the scraped data in the same dir or at a lesser depth.
-3. Run scraper after activating the env using --> python cofoScraper.py <Relative path of Dataset dir> <language-ID>.
-4. Language-IDs:
-  a. cpp.g++11
-  b. cpp.g++14
-  c. cpp.g++17
-  d. c.gcc11
-5. Let it run.
-6. After completion, <Scraped Data> dir will be populated with a sub-dir, 'dataset' and a log file, 'logs.log' 
-
-What is it?
-What does it contain and What is the hierarchy?
-[Would add the same picture as above]
-Stats?
-
-
 ## Pre-requisites
 * Python (>=3.8.5)
 * Selenium (3.14)
@@ -38,12 +20,20 @@ Scraper
 
 2. Usage:
  `python cofoScraper.py <dataset-dir> <language-ID> <firefox/chrome> <true/false>`
-`<dataset-dir>` : Directory for storing all the scraped data 
-`<language-ID>` : ID for the programming language submissions to be scraped 
-`<firefox/chrome>` : Web-driver to be used 
+`<dataset-dir>` : Directory for storing all the scraped data. This needs to be created beforehand. 
+`<language-ID>` : ID for the programming language submissions to be scraped.
+`<firefox/chrome>` : Web-driver to be used.
 `<true/false>` : Flag specifying whether the first run or not. `true` means the first run and `false` otherwise.
 
-[point to be added for scrapeList.pkl. Gonna add it]
+Language-IDs:
+  * cpp.g++11
+  * cpp.g++14
+  * cpp.g++17
+  * c.gcc11
+  * python.3
+  * java8
+  * java11
+'scrapeList.pkl' denotes a subset of problems to be scraped. Codeforces API return information about a lot of problems. Using scrapeList.pkl will make the scrapign confined to about just 2.6K problems.
 
 ## Utility scripts
 * `getScrapedList.py`
