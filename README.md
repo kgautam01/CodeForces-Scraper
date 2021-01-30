@@ -34,7 +34,7 @@ All packages can be installed either using `conda`or `pip`.
    * java8 (Java-8)
    * java11 (Java-11)
 ### Flow of scraping
-<img src="scraper+tree.jpg" width=auto height=auto>
+<img src="./images/scraper+tree.jpg" width=auto height=auto>
 
 'scrapeList.pkl' denotes a subset of problems to be scraped. Codeforces API return information about a lot of problems. Using scrapeList.pkl will make the scraping confined to just 2.6K problems out of all of the problems.
 
