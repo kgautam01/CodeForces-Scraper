@@ -13,9 +13,8 @@ All packages can be installed either using `conda`or `pip`.
  Do check the compatible versions of chrome/firefox driver with the already installed chrome/firefox browser installed in your system. This repo contains the latest versions of chrome and firefox drivers tested on Chrome browser (87.0.4280.88 (Official Build) (64-bit)) and Mozilla firefox (V84.0 (64-bit))
 
 ## Running the scripts
-Scraper
-[Will update the code to use parser for flags]
 
+### Scraper
 1. Run `getScrapedList.py` in the utility directory to generate a `alreadyExisting.pkl` containing the info about already scraped problems. 
 
 2. Usage:
@@ -25,16 +24,16 @@ Scraper
 `<firefox/chrome>` : Web-driver to be used.
 `<true/false>` : Flag specifying whether the first run or not. `true` means the first run and `false` otherwise.
 
-Language-IDs:
-  * cpp.g++11
-  * cpp.g++14
-  * cpp.g++17
-  * c.gcc11
-  * python.3
-  * java8
-  * java11
-  
-'scrapeList.pkl' denotes a subset of problems to be scraped. Codeforces API return information about a lot of problems. Using scrapeList.pkl will make the scrapign confined to about just 2.6K problems.
+3. Language-IDs:
+   * cpp.g++11
+   * cpp.g++14
+   * cpp.g++17
+   * c.gcc11
+   * python.3
+   * java8
+   * java11
+
+'scrapeList.pkl' denotes a subset of problems to be scraped. Codeforces API return information about a lot of problems. Using scrapeList.pkl will make the scraping confined to just 2.6K problems out of all of the problems.
 
 ## Utility scripts
 * `getScrapedList.py`
