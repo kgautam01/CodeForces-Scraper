@@ -1,5 +1,5 @@
 # CodeForces-Scraper
-Selenium-Python based scraper for scraping the source codes and other information of the problems.
+Selenium-Python based scraper for scraping the source codes and other information associated with the problems/questions openly available on [Codeforces] (https://codeforces.com/) website.
 
 ## Pre-requisites
 * Python (>=3.8.5)
@@ -24,14 +24,14 @@ All packages can be installed either using `conda`or `pip`.
 `<firefox/chrome>` : Web-driver to be used.
 `<true/false>` : Flag specifying whether the first run or not. `true` means the first run and `false` otherwise.
 
-3. Language-IDs:
-   * cpp.g++11
-   * cpp.g++14
-   * cpp.g++17
-   * c.gcc11
-   * python.3
-   * java8
-   * java11
+3. Language-IDs (Lang-Version):
+   * c.gcc11 (GNU C-11)
+   * cpp.g++11 (GNU CPP-11)
+   * cpp.g++14 (GNU CPP-14)
+   * cpp.g++17 (GNU CPP-17)
+   * python.3 (Python-3)
+   * java8 (Java-8)
+   * java11 (Java-11)
 
 'scrapeList.pkl' denotes a subset of problems to be scraped. Codeforces API return information about a lot of problems. Using scrapeList.pkl will make the scraping confined to just 2.6K problems out of all of the problems.
 
