@@ -11,3 +11,6 @@ This dataset can be used in various applications based on Machine Learning, name
 * For using the dataset in your application, download and untar [COFO-Dataset.tar](https://drive.google.com/drive/u/1/folders/1Vvv67WJYoJuqF5ZqIS78MFPf3Viuunyb) inside the COFO directory on GDrive to which you will be redirected to, on clicking the link. The folde does not have editi access due to obvious reasons but you would be able to view the content. 
 * Once untarred, you will be able to analyse the dataset and make use of it, following the same directory structure as shown above. All of the scraped information will become accessible after untarring the file for all the classes contained in the dataset.
 * Not all sub-directories/problems contain programs, written in all programming languages but surely in atleast on of them. 
+
+##### NOTE
+Kindly go through the license clauses included in the repository before making use of the data in any of the application. Make sure to adhere to the clauses stated in [odeforces materials usage license(v. 0.1)](https://codeforces.com/blog/entry/967).
