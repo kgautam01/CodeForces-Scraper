@@ -6,6 +6,9 @@ datasetc11
 datasetpython
 datasetjava8
 datasetjava11
+datasetjava8-backup
+cleanData.sh
+cleanfile.py
 # pickle file
 alreadyExisting.pkl
 

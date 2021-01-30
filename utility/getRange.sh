@@ -9,7 +9,7 @@ for dir in $1/*;do
         let "totalDir+=1"
         if [ -d $dir ]; then
                 filesCounter=0
-                if [ -n "$(ls $dir/submissions)" ]; then
+                if [ -n "$(ls $dir/submissions)" ] && [ -f $dir/specification.txt ]; then
                         let "dirCounter+=1"
                         let "filesCounter = "$(ls $dir/submissions | wc -l)""
 #                       echo "filesCounter: $filesCounter"
