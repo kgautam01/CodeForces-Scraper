@@ -1,9 +1,7 @@
 ## COFO: COFO: COdeFOrces dataset for ProgramClassification, Recognition and Tagging 
 COFO: A dataset consisting of _809_ classes/problems with a total of _369K_ source codes, written in _C, C++, Java_ and _Python_ programming languages along with other metadata such as code tags, problem specification, input-output specifications and associates test cases. COFO has been scraped from the openly available [Codeforces](https://codeforces.com/) website using a selenium-beautifulsoup-python based scraper. The dataset follows a clear directory structure as shown in the figure below and is made publicly available.
 
-![Dataset Directory Structure](tree.jpg){:class="img-responsive"}
-![Dataset Directory Structure](tree.jpg){:height="50%" width="50%"}
-![Dataset Directory Structure](tree.jpg){:height="700px" width="400px"}
+<img src="tree.jpg" width="100" height="100">
 
 # Usage
 This dataset can be used in various applications based on Machine Learning, namely Program Classification, Code Tagging, etc.
