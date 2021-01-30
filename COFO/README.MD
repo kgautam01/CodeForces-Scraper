@@ -2,7 +2,7 @@
 COFO: A dataset consisting of _809_ classes/problems with a total of _369K_ source codes, written in _C, C++, Java_ and _Python_ programming languages along with other metadata such as code tags, problem specification, input-output specifications and associates test cases. COFO has been scraped from the openly available [Codeforces](https://codeforces.com/) website using a selenium-beautifulsoup-python based scraper. The dataset follows a clear directory structure as shown in the figure below and is made publicly available.
 
 <p align="center">
-<img src="tree.jpg" width="500" height="300">
+<img src="../images/tree.jpg" width="500" height="300">
 </p>
 
 # Usage
