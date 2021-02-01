@@ -41,7 +41,7 @@ Selenium-Beautifulsoup-Python based scraper for scraping the source codes and ot
    * java8 (Java-8)
    * java11 (Java-11)
 
-4. 'scrapeList.pkl' denotes a subset of problems to be scraped. Codeforces API return information about a lot of problems. Using scrapeList.pkl will make the scraping confined to just 2.6K problems out of all of the problems.
+4. `scrapeList.pkl` denotes a subset of problems to be scraped. Codeforces API return information about a lot of problems. Using `scrapeList.pkl` will make the scraping confined to just 2.6K problems out of all of the problems.
    
 ### Flow of scraping
 <img src="./images/scraper+tree.jpg" width=auto height=auto>
