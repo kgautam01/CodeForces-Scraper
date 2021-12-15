@@ -8,7 +8,7 @@ COFO: A dataset consisting of _809_ classes/problems with a total of _369K_ sour
 # Usage
 This dataset can be used in various applications based on Machine Learning, namely Program Classification, Code Tagging, etc.
 * The dataset has been stored on Google Drive and is accessible using the link below.
-* For using the dataset in your application, download and untar [COFO-Dataset.tar](https://drive.google.com/drive/u/1/folders/1Vvv67WJYoJuqF5ZqIS78MFPf3Viuunyb) inside the COFO directory on GDrive to which you will be redirected to, on clicking the link. The folde does not have editi access due to obvious reasons but you would be able to view the content. 
+* For using the dataset in your application, download and untar [COFO-Dataset.tar](https://drive.google.com/file/d/1WyyoHWL_THVUDiv6uWwlvQHBs0GkhDJs/view?usp=sharing) inside the COFO directory on GDrive to which you will be redirected to, on clicking the link. The folde does not have editi access due to obvious reasons but you would be able to view the content. 
 * Once untarred, you will be able to analyse the dataset and make use of it, following the same directory structure as shown above. All of the scraped information will become accessible after untarring the file for all the classes contained in the dataset.
 * Not all sub-directories/problems contain programs, written in all programming languages but surely in atleast on of them. 
 
